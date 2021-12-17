@@ -1,9 +1,13 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,url_for,request
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/",methods=["GET","POST"])
 def index():
+    if request.method == "POST":
+        keywords = request.form["keywords"].split(",")
+        websites = request.form["websites"].split(",")
+
     return render_template("starter.html")
 
 
